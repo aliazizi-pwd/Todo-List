@@ -20,4 +20,13 @@
 #input-valid:focus {
     border: 1px solid #4d4d5a;
 }
-/* -> view-dataBase */
+/* theme dark */
+.themeDark {
+    color: #fffafa;
+    background-color: #000;
+}
+/* theme Light */
+.themeLight {
+    color: #000;
+    background-color: #fffafa;
+}
