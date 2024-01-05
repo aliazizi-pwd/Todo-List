@@ -6,15 +6,43 @@
     <title>Todo List App</title>
     <link rel="icon image" href="./public/icon/icon-todo-list.png">
     <link rel="stylesheet" href="./source/css/style.css">
-    <link rel="stylesheet" href="./source/library/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-
+    <!-- content one -> is add task user -->
+    <section class="viewport-user container">
+        <div class="viewPanel-user shadow bg-body-tertiary mt-4 mb-4">
+            <div class="d-flex flex-row justify-content-between align-items-center container">
+                <h2 class="text-start ps-1 fs-5 fst-italic pt-2">Todo List App</h2>
+                <span class="icon pt-2"><i class="fa fa-bars"></i></span>
+            </div>
+            <div class="viewPanel-adding mt-2">
+                <form class="form-control p-4 d-flex flex-row justify-content-center align-items-center">
+                    <input type="text" class="input-value input-group-text ms-2" id="input-valid" placeholder="Enter value todo...">
+                    <input type="date" class="input-date input-group-text ms-2" id="input-valid">
+                </form>
+                <div class="d-flex flex-row justify-content-between align-items-center m-2 container">
+                    <div class="content-Todo">
+                        <h2 class="text-start fs-6 fw-bold pt-3">Laps 0</h2>
+                    </div>
+                    <div class="filter-content">
+                        <select name="select-filter" class="filter-todo form-select bg-warning mt-3 mb-4">
+                            <option value="All">All</option>
+                            <option value="Complete">Complete</option>
+                            <option value="unComplete">unComplete</option>
+                            <option value="Liked">Liked</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
 
     <!-- script file && library link file -->
     <script src="./source/javaScript/app.js"></script>
-    <script src="./source/library/bootstrap.min.js"></script>
-    <script src="./source/library/anime.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./node_modules/animejs/lib/anime.min.js"></script>
 </body>
 </html>

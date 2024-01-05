@@ -1,1 +1,22 @@
 /** start style code css file main **/
+/* -> css reset */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* -> viewPanel-user style */
+.viewPanel-user {
+    width: 100%;
+    height: auto;
+}
+/* -> input valid style */
+#input-valid {
+    width: 300px;
+    outline: none;
+    border: 1px solid #ccc;
+    text-align: start;
+}
+#input-valid:focus {
+    border: 1px solid #ff7300;
+}
