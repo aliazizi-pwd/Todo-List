@@ -7,6 +7,7 @@ const body = $.querySelector("body");
 const form = $.querySelector(".form");
 const innerValue = $.querySelector(".input-value");
 const innerDate = $.querySelector(".input-date");
+const btnAdd = $.querySelector(".btn-add");
 const countTodo = $.querySelector(".count-todos");
 const filterTodo = $.querySelector(".filter-todo");
 const btnSelectAll = $.querySelector(".btn-all");
@@ -20,6 +21,22 @@ const dataBaseTodoList = $.querySelector(".dataBase");
 const viewportUser = $.querySelector(".viewport-user");
 const viewportDataBase = $.querySelector(".viewport-dataBase");
 const tableData = $.querySelector(".table-data");
+
+
+// -> check input's Form Add todo items :- processing main todo list
+function checkInputsHandler (e) {
+    e.preventDefault();
+    
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -59,6 +76,8 @@ function loadThemeAppHandler () {
 
 
 
-// -> add Event Click and...:
+// -> add Event Click for Theme Dark and Theme Light
 BtnThemeDark.addEventListener("click",changeThemeHandler); 
 window.addEventListener("load",loadThemeAppHandler);
+// -> add Event Click for Todo List
+btnAdd.addEventListener("click" , checkInputsHandler);
