@@ -50,10 +50,10 @@ function changeThemeHandler () {
 
 
 function loadThemeAppHandler () {
-    let theme = JSON.parse(localStorage.getItem("darkMode"));
-    if (theme) {
+    let themeLocalStorage = JSON.parse(localStorage.getItem("darkMode"));
+    if (themeLocalStorage) {
         changeThemeHandler();
-    }
+    }   
 }
 
 
