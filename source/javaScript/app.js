@@ -23,13 +23,41 @@ const viewportDataBase = $.querySelector(".viewport-dataBase");
 const tableData = $.querySelector(".table-data");
 
 
+// list main todo list app
+let todosArray = []; 
+
+
 // -> check input's Form Add todo items :- processing main todo list
 function checkInputsHandler (e) {
     e.preventDefault();
+    // Get the time
+    let hour = new Date().getHours();
+    let minutes = new Date().getMinutes();
+    let second = new Date().getSeconds();
+
+    // Get the time correct
+    hour < 9 ? hour = `0${hour}` : null;
+    minutes < 9 ? minutes = `0${minutes}` : null;
+    second < 9 ? second = `0${second}` : null;
+
+    let valueTodo = innerValue.value;
+    let dateTodo = innerDate.value;
+    let timeAddTodo = `${hour}:${minutes}:${second}`;
     
+    // check input todo add 
+    if (!valueTodo || !dateTodo) {
+        // show error user 
+        alert("Please fill in the specified values and then add todo");
+    } else {
+        // add todo and processing todo list add
+        // Create new Data Todo
+    }
 }
 
-
+// Make Todo Item and add to Dom 
+function makeTodoItemsHandler () {
+    
+}
 
 
 
