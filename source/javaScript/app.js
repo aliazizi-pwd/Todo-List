@@ -67,6 +67,7 @@ function checkInputsHandler (e) {
         // push todo main to array
         todosArray.push(newTodoItem);
 
+
         // -> process todo list
         // 1- save todo list to local storage
         getSaveTodoLocalStorage(todosArray);
@@ -134,23 +135,49 @@ function getCreateTodoHandler (todosArray) {
         activityTodo.className = "action d-flex flex-row justify-content-center align-items-center gap-1";
         // button Done Todo
         btnDone = $.createElement("button");
-        btnDone.className = "btn btn-success";
+        btnDone.className = "btn btn-success done";
         btnDone.innerHTML = `<i class="fa fa-check"></i>`;
         // button Trash Todo
         btnTrash = $.createElement("button");
-        btnTrash.className = "btn btn-danger";
+        btnTrash.className = "btn btn-danger trash";
         btnTrash.innerHTML = `<i class="fa fa-trash"></i>`;
         // button Star (Like) Todo
         btnStar = $.createElement("button");
-        btnStar.className = "btn btn-warning";
+        btnStar.className = "btn btn-warning like";
         btnStar.innerHTML = `<i class="fa-regular fa-thumbs-up fa-bounce text-dark"></i>`;
+
+
+        // complete box is :)
+        if (todo.complete) {
+            // Design change
+            newTemplateTodo.className = "text-center table-success";
+            // Status change
+            statusTodo.innerHTML = "Completed";
+        }
 
         // append element's 
         activityTodo.append(btnDone,btnTrash,btnStar);
         newTemplateTodo.append(idTodo,valueTodo,dateTodo,timeTodo,statusTodo,activityTodo);
-        dataBaseTodoList.appendChild(newTemplateTodo);
+        dataBaseTodoList.appendChild(newTemplateTodo); 
     });
 }
+
+
+// -> action button click todo list 
+function actionButtonClickHandler (e) {
+    // clicked button check or Done 
+    let clickedTarget = e.target;
+    let partID = clickedTarget.parentElement.parentElement.firstChild.innerHTML;
+    if (clickedTarget.classList.contains("done")) {
+        todosArray.forEach(function (data) {
+            Number(partID) === data.id ? data.complete = !data.complete : null;
+        });
+    }
+
+
+    getSaveTodoLocalStorage(todosArray);
+    getCreateTodoHandler(todosArray);
+} 
 
 
 
@@ -213,5 +240,6 @@ BtnThemeDark.addEventListener("click",changeThemeHandler);
 window.addEventListener("load",loadThemeAppHandler);
 // -> add Event Click for Todo List
 btnAdd.addEventListener("click" , checkInputsHandler);
+dataBaseTodoList.addEventListener("click",actionButtonClickHandler);
 // -> add Event window and document
 window.addEventListener("load",loadTodoListHandler);
