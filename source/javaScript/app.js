@@ -82,8 +82,25 @@ function getSaveTodoLocalStorage (todosArray) {
     localStorage.setItem("TodoList",JSON.stringify(todosArray));
 }
 
+// process 2: onLoad Todo Template by localStorage and update todo list
+function loadTodoListHandler () {
+    // Receive data from local storage
+    let receiveDataLocalStorage = JSON.parse(localStorage.getItem("TodoList"));
+    todosArray = receiveDataLocalStorage;
+    
+    if (todosArray === null) {
+        todosArray = [];
+    } else {
+        // set to local storage data news 
+        getSaveTodoLocalStorage(todosArray);
+        // create data news local storage and show to todo list dataBase
+        getCreateTodoHandler(todosArray);
+    }
+}
 
-// process 2: create a new todo and append to dataBase todo list
+
+
+// process 3: create a new todo and append to dataBase todo list
 function getCreateTodoHandler (todosArray) {
     let newTemplateTodo,idTodo,valueTodo,dateTodo,timeTodo,statusTodo,activityTodo;
     let btnDone,btnTrash,btnStar;    
@@ -196,3 +213,5 @@ BtnThemeDark.addEventListener("click",changeThemeHandler);
 window.addEventListener("load",loadThemeAppHandler);
 // -> add Event Click for Todo List
 btnAdd.addEventListener("click" , checkInputsHandler);
+// -> add Event window and document
+window.addEventListener("load",loadTodoListHandler);
