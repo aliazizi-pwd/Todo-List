@@ -61,6 +61,7 @@ function checkInputsHandler (e) {
             date : dateTodo,
             time : timeAddTodo,
             complete : false,
+            like : false,
             status : "Waiting",
         };
 
@@ -155,6 +156,16 @@ function getCreateTodoHandler (todosArray) {
             statusTodo.innerHTML = "Completed";
         }
 
+        // like box is :)
+        if (todo.like) {
+            // Design change
+            newTemplateTodo.classList = "text-center table-warning";
+            // Status change
+            if (todo.complete) {
+                statusTodo.innerHTML = "Completed/Like";
+            }
+        }
+
         // append element's 
         activityTodo.append(btnDone,btnTrash,btnStar);
         newTemplateTodo.append(idTodo,valueTodo,dateTodo,timeTodo,statusTodo,activityTodo);
@@ -180,7 +191,13 @@ function actionButtonClickHandler (e) {
         });
 
         todosArray.splice(findIndex,1);
-    }
+    } 
+    // clicked button like or star todo
+    else if (clickedTarget.classList.contains("like")) {
+        todosArray.forEach(function (data) {
+            Number(partID) === data.id ? data.like = !data.like : null;
+        });
+    } 
 
 
     getSaveTodoLocalStorage(todosArray);
