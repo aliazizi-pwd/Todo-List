@@ -55,16 +55,90 @@ function checkInputsHandler (e) {
     } else {
         // add todo and processing todo list add
         // Create new Data Todo
+        const newTodoItem = {
+            id : todosArray.length + 1,
+            value : valueTodo,
+            date : dateTodo,
+            time : timeAddTodo,
+            complete : false,
+            status : "Waiting",
+        };
+
+        // push todo main to array
+        todosArray.push(newTodoItem);
+
+        // -> process todo list
+        // 1- save todo list to local storage
+        getSaveTodoLocalStorage(todosArray);
+        // 2- create a new todo and append to dataBase todo list
+        getCreateTodoHandler(todosArray);
     }
 }
 
-// Make Todo Item and add to Dom 
-// function makeTodoItemsHandler () {
-    
-// }
+
+
+// process 1: save todo list to local storage 
+function getSaveTodoLocalStorage (todosArray) {
+    localStorage.setItem("TodoList",JSON.stringify(todosArray));
+}
+
+
+// process 2: create a new todo and append to dataBase todo list
+function getCreateTodoHandler (todosArray) {
+    let newTemplateTodo,idTodo,valueTodo,dateTodo,timeTodo,statusTodo,activityTodo;
+    let btnDone,btnTrash,btnStar;    
+
+    // List from the beginning
+    dataBaseTodoList.innerHTML = "";
+
+    // loop items array and create todo template
+    todosArray.forEach(function (todo) {
+        // template todo main
+        newTemplateTodo = $.createElement("tr"); 
+        newTemplateTodo.className = "text-center";
+        // ID todo
+        idTodo = $.createElement("th");
+        idTodo.dataset.scope = "row";
+        idTodo.innerHTML = todo.id;
+        // value todo 
+        valueTodo = $.createElement("th");
+        valueTodo.innerHTML = todo.value;
+        // date todo
+        dateTodo = $.createElement("th");
+        dateTodo.innerHTML = todo.date;
+        // time todo
+        timeTodo = $.createElement("th");
+        timeTodo.innerHTML = todo.time;
+        // status todo
+        statusTodo = $.createElement("th");
+        statusTodo.innerHTML = todo.status;
+        // activity Todo
+        activityTodo = $.createElement("th");
+        activityTodo.className = "action d-flex flex-row justify-content-center align-items-center gap-1";
+        // button Done Todo
+        btnDone = $.createElement("button");
+        btnDone.className = "btn btn-success";
+        btnDone.innerHTML = `<i class="fa fa-check"></i>`;
+        // button Trash Todo
+        btnTrash = $.createElement("button");
+        btnTrash.className = "btn btn-danger";
+        btnTrash.innerHTML = `<i class="fa fa-trash"></i>`;
+        // button Star (Like) Todo
+        btnStar = $.createElement("button");
+        btnStar.className = "btn btn-warning";
+        btnStar.innerHTML = `<i class="fa-regular fa-thumbs-up fa-bounce text-dark"></i>`;
+
+        // append element's 
+        activityTodo.append(btnDone,btnTrash,btnStar);
+        newTemplateTodo.append(idTodo,valueTodo,dateTodo,timeTodo,statusTodo,activityTodo);
+        dataBaseTodoList.appendChild(newTemplateTodo);
+    });
+}
 
 
 
+
+// show error handler
 function showModalErrorHandler () {
     sectionMainApp.style.filter = 'blur(10px)';
     modal.classList.add("active");
@@ -114,7 +188,6 @@ function loadThemeAppHandler () {
         changeThemeHandler();
     }   
 }
-
 
 
 
