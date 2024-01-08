@@ -204,6 +204,12 @@ function actionButtonClickHandler (e) {
     getCreateTodoHandler(todosArray);
 } 
 
+// -> change and Filter todo
+function getFilterTodoHandler (e) {
+    
+}
+
+
 
 
 
@@ -268,3 +274,5 @@ btnAdd.addEventListener("click" , checkInputsHandler);
 dataBaseTodoList.addEventListener("click",actionButtonClickHandler);
 // -> add Event window and document
 window.addEventListener("load",loadTodoListHandler);
+// -> add Event Change
+filterTodo.addEventListener("change",getFilterTodoHandler);
