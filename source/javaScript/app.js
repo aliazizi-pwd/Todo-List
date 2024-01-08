@@ -165,13 +165,21 @@ function getCreateTodoHandler (todosArray) {
 
 // -> action button click todo list 
 function actionButtonClickHandler (e) {
-    // clicked button check or Done 
+    // clicked button check or Done todo
     let clickedTarget = e.target;
     let partID = clickedTarget.parentElement.parentElement.firstChild.innerHTML;
     if (clickedTarget.classList.contains("done")) {
         todosArray.forEach(function (data) {
             Number(partID) === data.id ? data.complete = !data.complete : null;
         });
+    } 
+    // clicked button trash or remove todo 
+    else if (clickedTarget.classList.contains("trash")) {
+        let findIndex = todosArray.findIndex(function (data) {
+            return Number(partID) === data.id;
+        });
+
+        todosArray.splice(findIndex,1);
     }
 
 
