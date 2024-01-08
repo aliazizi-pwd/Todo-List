@@ -30,3 +30,32 @@
     color: #000;
     background-color: #fffafa;
 }
+/* modal box and style box's content modal */
+.modal-box {
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    top: 0%;
+    left: 40%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-out;
+}
+.progress-box {
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    top: 0;
+}
+.progress-box-bar {
+    width: 0%;
+    height: 3px;
+    position: relative;
+}
+.modal-box.active { 
+    position: absolute;
+    top: 40%;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease-in-out;
+}

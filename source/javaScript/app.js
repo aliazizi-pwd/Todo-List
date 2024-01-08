@@ -2,6 +2,7 @@
 // -> select let
 let $ = document;
 let themeDark = false;
+let timerModal = 0;
 // -> select const
 const body = $.querySelector("body");
 const form = $.querySelector(".form");
@@ -21,6 +22,9 @@ const dataBaseTodoList = $.querySelector(".dataBase");
 const viewportUser = $.querySelector(".viewport-user");
 const viewportDataBase = $.querySelector(".viewport-dataBase");
 const tableData = $.querySelector(".table-data");
+const sectionMainApp = $.querySelector(".app-todo");
+const modal = $.querySelector(".modal-box");
+const progressBar = $.querySelector(".progress-box-bar");
 
 
 // list main todo list app
@@ -47,7 +51,7 @@ function checkInputsHandler (e) {
     // check input todo add 
     if (!valueTodo || !dateTodo) {
         // show error user 
-        alert("Please fill in the specified values and then add todo");
+        showModalErrorHandler();
     } else {
         // add todo and processing todo list add
         // Create new Data Todo
@@ -55,17 +59,27 @@ function checkInputsHandler (e) {
 }
 
 // Make Todo Item and add to Dom 
-function makeTodoItemsHandler () {
+// function makeTodoItemsHandler () {
     
+// }
+
+
+
+function showModalErrorHandler () {
+    sectionMainApp.style.filter = 'blur(10px)';
+    modal.classList.add("active");
+    let displayProgressBar = setInterval(function () {
+        timerModal++;
+        progressBar.style.width = `${timerModal}%`;
+        if (timerModal > 99) {
+            timerModal = 0;
+            progressBar.style.width = `${timerModal}%`;
+            clearInterval(displayProgressBar);
+            modal.classList.remove("active");
+            sectionMainApp.style.filter = 'blur(0px)';
+        }
+    } , 50);
 }
-
-
-
-
-
-
-
-
 
 
 // -> Change Theme Todo List:
