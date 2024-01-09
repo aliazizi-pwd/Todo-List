@@ -11,10 +11,7 @@ const innerDate = $.querySelector(".input-date");
 const btnAdd = $.querySelector(".btn-add");
 const countTodo = $.querySelector(".count-todos");
 const filterTodo = $.querySelector(".filter-todo");
-const btnSelectAll = $.querySelector(".btn-all");
-const btnSelectComplete = $.querySelector(".btn-complete");
-const btnSelectUncomplete = $.querySelector(".btn-uncomplete");
-const btnSelectLiked = $.querySelector(".btn-liked");
+const btnsFilterHandler = $.querySelectorAll(".select");
 const BtnThemeDark = $.querySelector(".theme-Dark");
 const clearTodos = $.querySelector(".clear-todo");
 const messageTodoList = $.querySelector(".text-message");
@@ -217,12 +214,12 @@ function getFilterTodoHandler (e) {
             break;
         case "Complete":
             sortFilter = todosArray.filter(function (todo) {
-                return todo.complete === false;
+                return todo.complete === true;
             });
             break;
         case "unComplete":
             sortFilter = todosArray.filter(function (todo) {
-                return todo.complete === true;
+                return todo.complete === false;
             });
             break;   
         case "Liked":
@@ -235,6 +232,34 @@ function getFilterTodoHandler (e) {
 
 
 
+// -> button click filter todo item list dataBase Handler 
+let lastClickButton = null;
+let sortFilter = null;
+btnsFilterHandler.forEach(function (btn) {
+    btn.addEventListener("click" , function () {
+        if (lastClickButton !== null) {
+            lastClickButton.classList.replace("btn-warning" , "btn-primary");
+            lastClickButton.classList.replace("text-dark","text-light");
+        } 
+        btn.classList.replace("btn-primary","btn-warning");
+        btn.classList.replace("text-light","text-dark");
+        lastClickButton = btn;
+
+        sortFilter = todosArray.filter(function (todo) {
+            if (btn.dataset.name === "All") {
+                return todosArray;
+            } else if (btn.dataset.name === "Complete") {
+                return todo.complete === true;
+            } else if (btn.dataset.name === "unComplete") {
+                return todo.complete === false;
+            } else if (btn.dataset.name === "Liked") {
+                return todo.like === true;
+            }
+        }); 
+
+        getCreateTodoHandler(sortFilter);
+    });    
+});
 
 
 // show error handler
