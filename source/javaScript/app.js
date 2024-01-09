@@ -72,6 +72,7 @@ function checkInputsHandler (e) {
         getSaveTodoLocalStorage(todosArray);
         // 2- create a new todo and append to dataBase todo list
         getCreateTodoHandler(todosArray);
+        getUpdateStatusTodoAppHandler();
     }
 }
 
@@ -95,6 +96,8 @@ function loadTodoListHandler () {
         getSaveTodoLocalStorage(todosArray);
         // create data news local storage and show to todo list dataBase
         getCreateTodoHandler(todosArray);
+        // 
+        getUpdateStatusTodoAppHandler();
     }
 }
 
@@ -188,6 +191,7 @@ function actionButtonClickHandler (e) {
             return Number(partID) === data.id;
         });
 
+        // Remove todo at find index Todo Clicked
         todosArray.splice(findIndex,1);
     } 
     // clicked button like or star todo
@@ -200,6 +204,8 @@ function actionButtonClickHandler (e) {
 
     getSaveTodoLocalStorage(todosArray);
     getCreateTodoHandler(todosArray);
+    // Update Status Top App Todo List
+    getUpdateStatusTodoAppHandler();
 } 
 
 // -> change and Filter todo
@@ -265,6 +271,17 @@ function getClearTodoHandler () {
     todosArray = [];
     getCreateTodoHandler(todosArray);
     getSaveTodoLocalStorage(todosArray);
+}
+
+function getUpdateStatusTodoAppHandler () {
+    let receiveDataLocalStorage = JSON.parse(localStorage.getItem("TodoList"));
+    countTodo.innerHTML = `Laps : ${receiveDataLocalStorage.length}`;
+
+    if (receiveDataLocalStorage.length <= 0) {
+        messageTodoList.innerHTML = `<i class="fa-solid fa-triangle-exclamation fa-bounce text-danger pe-2 ps-4"></i>Todo has not been added`;
+    } else {
+        messageTodoList.innerHTML = `<i class="fa-solid fa-triangle-exclamation fa-bounce text-success pe-2 ps-4"></i>Your daily tasks can be displayed`;
+    }
 }
 
 
