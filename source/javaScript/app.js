@@ -206,7 +206,31 @@ function actionButtonClickHandler (e) {
 
 // -> change and Filter todo
 function getFilterTodoHandler (e) {
+    let changed = e.target.value;
+    let receiveDataLocalStorage = JSON.parse(localStorage.getItem("TodoList"));
+    todosArray = receiveDataLocalStorage;
+    let sortFilter;
     
+    switch (changed) {
+        case "All":
+            sortFilter = todosArray;
+            break;
+        case "Complete":
+            sortFilter = todosArray.filter(function (todo) {
+                return todo.complete === false;
+            });
+            break;
+        case "unComplete":
+            sortFilter = todosArray.filter(function (todo) {
+                return todo.complete === true;
+            });
+            break;   
+        case "Liked":
+            sortFilter = todosArray.filter(function (todo) {
+                return todo.like === true;
+            });
+    }
+    getCreateTodoHandler(sortFilter);
 }
 
 
