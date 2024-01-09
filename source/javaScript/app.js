@@ -3,6 +3,7 @@
 let $ = document;
 let themeDark = false;
 let timerModal = 0;
+let sortFilter = null;
 // -> select const
 const body = $.querySelector("body");
 const form = $.querySelector(".form");
@@ -206,27 +207,24 @@ function getFilterTodoHandler (e) {
     let changed = e.target.value;
     let receiveDataLocalStorage = JSON.parse(localStorage.getItem("TodoList"));
     todosArray = receiveDataLocalStorage;
-    let sortFilter;
     
-    switch (changed) {
-        case "All":
-            sortFilter = todosArray;
-            break;
-        case "Complete":
-            sortFilter = todosArray.filter(function (todo) {
+    sortFilter = todosArray.filter(function (todo) {
+        switch (changed) {
+            case "All":
+                return todosArray;
+                break;
+            case "Complete":
                 return todo.complete === true;
-            });
-            break;
-        case "unComplete":
-            sortFilter = todosArray.filter(function (todo) {
+                break;
+            case "unComplete":
                 return todo.complete === false;
-            });
-            break;   
-        case "Liked":
-            sortFilter = todosArray.filter(function (todo) {
+                break;
+            case "Liked":
                 return todo.like === true;
-            });
-    }
+                break;
+        }
+    });
+    
     getCreateTodoHandler(sortFilter);
 }
 
@@ -234,7 +232,6 @@ function getFilterTodoHandler (e) {
 
 // -> button click filter todo item list dataBase Handler 
 let lastClickButton = null;
-let sortFilter = null;
 btnsFilterHandler.forEach(function (btn) {
     btn.addEventListener("click" , function () {
         if (lastClickButton !== null) {
