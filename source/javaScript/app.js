@@ -67,6 +67,12 @@ function checkInputsHandler (e) {
         todosArray.push(newTodoItem);
 
 
+        // null input added
+        innerValue.value = "";
+        innerDate.value = "";
+
+        innerValue.focus();
+
         // -> process todo list
         // 1- save todo list to local storage
         getSaveTodoLocalStorage(todosArray);
