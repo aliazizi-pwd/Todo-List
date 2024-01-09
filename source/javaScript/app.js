@@ -13,8 +13,8 @@ const btnAdd = $.querySelector(".btn-add");
 const countTodo = $.querySelector(".count-todos");
 const filterTodo = $.querySelector(".filter-todo");
 const btnsFilterHandler = $.querySelectorAll(".select");
-const BtnThemeDark = $.querySelector(".theme-Dark");
-const clearTodos = $.querySelector(".clear-todo");
+const btnThemeDark = $.querySelector(".theme-Dark");
+const btnClearTodos = $.querySelector(".clear-todo");
 const messageTodoList = $.querySelector(".text-message");
 const dataBaseTodoList = $.querySelector(".dataBase");
 const viewportUser = $.querySelector(".viewport-user");
@@ -259,6 +259,15 @@ btnsFilterHandler.forEach(function (btn) {
 });
 
 
+
+// -> Clear all Todo
+function getClearTodoHandler () {
+    todosArray = [];
+    getCreateTodoHandler(todosArray);
+    getSaveTodoLocalStorage(todosArray);
+}
+
+
 // show error handler
 function showModalErrorHandler () {
     sectionMainApp.style.filter = 'blur(10px)';
@@ -313,11 +322,12 @@ function loadThemeAppHandler () {
 
 
 // -> add Event Click for Theme Dark and Theme Light
-BtnThemeDark.addEventListener("click",changeThemeHandler); 
+btnThemeDark.addEventListener("click",changeThemeHandler); 
 window.addEventListener("load",loadThemeAppHandler);
 // -> add Event Click for Todo List
 btnAdd.addEventListener("click" , checkInputsHandler);
 dataBaseTodoList.addEventListener("click",actionButtonClickHandler);
+btnClearTodos.addEventListener("click",getClearTodoHandler)
 // -> add Event window and document
 window.addEventListener("load",loadTodoListHandler);
 // -> add Event Change
